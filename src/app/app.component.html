@@ -1,58 +1,56 @@
-<div class="container col-xs-12">
-  <app-game-control (intervalFired)="onIntervalFired($event)"></app-game-control>
-</div>
-
 <div class="container">
   <div class="row">
-      <div class="col-xs-8" style="margin-top: 50px;">
-          <app-odd *ngFor="let odd of oddNumber" [oNumber]="odd"></app-odd>
-          <app-even #eNumber *ngFor="let even of evenNumber" [eNumber]="even"></app-even>
-      </div>
-  </div>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- <div class="container">
-  <app-cockpit 
-    (serverCreated)="onServerAdded($event)"
-    (bluprintCreated)="onBluprintAdded($event)">
-  </app-cockpit>
-  <hr>
-  <div class="row">
     <div class="col-xs-12">
-      <app-server-element 
-        *ngFor="let serverElement of serverElements"
-        [srElement]="serverElement">
-        <p>
-          <strong *ngIf="serverElement.type === 'server'" style="color: red">{{ serverElement.content }}</strong>
-          <em *ngIf="serverElement.type === 'blueprint'">{{ serverElement.content }}</em>
-        </p>
-      </app-server-element>
+      <button class="btn btn-primary" (click)="onlyOdd = !onlyOdd">Only show odd numbers</button>
+      <br><br>
+      <ul class="list-group">
+        <div *ngIf="onlyOdd">
+          <li 
+            class="list-group-item" 
+            [ngClass]="{odd: odd % 2 !== 0}"
+            [ngStyle]="{backgroundColor: odd % 2 !== 0 ? 'yellow' : 'transparent'}"
+            *ngFor="let odd of oddNumbers">
+            {{odd}}
+          </li>
+        </div>
+        <!-- <div *ngIf="!onlyOdd">
+          <li 
+            class="list-group-item" 
+            [ngClass]="{odd: even % 2 !== 0}"
+            [ngStyle]="{backgroundColor: even % 2 !== 0 ? 'yellow' : 'transparent'}"
+            *ngFor="let even of evenNumbers">
+            {{even}}
+          </li>
+        </div>
+        <ng-template [ngIf]="!onlyOdd">
+          <div>
+            <li 
+            class="list-group-item" 
+            [ngClass]="{odd: even % 2 !== 0}"
+            [ngStyle]="{backgroundColor: even % 2 !== 0 ? 'yellow' : 'transparent'}"
+            *ngFor="let even of evenNumbers">
+            {{even}}
+            </li>
+          </div>
+        </ng-template> -->
+        <div *appUnless="onlyOdd">
+          <li 
+            class="list-group-item" 
+            [ngClass]="{odd: even % 2 !== 0}"
+            [ngStyle]="{backgroundColor: even % 2 !== 0 ? 'yellow' : 'transparent'}"
+            *ngFor="let even of evenNumbers">
+            {{even}}
+          </li>
+        </div>
+      </ul>
+      <p appBasicHighlight>basic highlight</p>
+      <p appBetterHighlight [defaultColor]="'yellow'" [highlightColor]="'red'">better highlight</p>
+    </div>
+    <div [ngSwitch]="value">
+      <p *ngSwitchCase="5">5</p>
+      <p *ngSwitchCase="10">10</p>
+      <p *ngSwitchCase="100">100</p>
+      <p *ngSwitchDefault="">defaule</p>
     </div>
   </div>
-</div> -->
+</div>
