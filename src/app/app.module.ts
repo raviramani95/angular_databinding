@@ -12,6 +12,10 @@ import { EvenComponent } from './game-control/even/even.component';
 import { BasicHighlightDirective } from './basic-highlight/basic-highlight.directive';
 import { BetterHighlightDirective } from './better-highlight/better-highlight.directive';
 import { UnlessDirective } from './better-highlight/unless.directive';
+import { AccountComponent } from './account/account.component';
+import { NewAccountComponent } from './new-account/new-account.component';
+import { AccountService } from './account.service';
+import { LoggingService } from './logging.service';
 // import {HttpModule} from '@angular/http';
 
 @NgModule({
@@ -24,13 +28,15 @@ import { UnlessDirective } from './better-highlight/unless.directive';
     EvenComponent,
     BasicHighlightDirective,
     BetterHighlightDirective,
-    UnlessDirective
+    UnlessDirective,
+    AccountComponent,
+    NewAccountComponent
   ],
   imports: [
     BrowserModule,
     FormsModule
   ],
-  providers: [],
+  providers: [AccountService, LoggingService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
